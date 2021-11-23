@@ -1,0 +1,33 @@
+<h1>Urls</h1>
+
+<%= form_for @url, url: {controller: "urls", action: "create"} do |form| %>
+  <div>
+    <%= form.label :full %><br>
+    <%= form.text_field :full %>
+    <% @url.errors.full_messages_for(:full).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Full URL</th>
+      <th scope="col">Short URL</th>
+     </tr>
+  </thead>
+  <tbody>
+    <% @urls.each do |url| %>
+      <tr>
+        <th scope="row"><%= url.id %></th>
+        <td><%= url.full %></td>
+        <td><%= url.short %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
