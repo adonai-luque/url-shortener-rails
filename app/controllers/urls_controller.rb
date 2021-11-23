@@ -8,13 +8,16 @@ class UrlsController < ApplicationController
     @url = Url.new(url_params)
     @url.save
     @url.short = @url.id.to_s(36)
+    @url.clicks = 0
     @url.save
-    redirect_to urls_path
+    redirect_to '/'
   end
 
   def show
-    @url = Url.find(params[:id].to_i(36))
-    redirect_to "http://#{@url.full}"
+    @url = Url.find(params[:short].to_i(36))
+    @url.clicks += 1
+    @url.save
+    redirect_to @url.full
   end
 
   private

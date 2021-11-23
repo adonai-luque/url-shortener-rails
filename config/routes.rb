@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root 'urls#index'
-  resources :urls 
+  root to: 'urls#index'
+  get '/:short', to: 'urls#show'
+  post '/urls', to: 'urls#create'
 end
